@@ -1,4 +1,4 @@
-package com.elista;
+package com.janusze.elista;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
