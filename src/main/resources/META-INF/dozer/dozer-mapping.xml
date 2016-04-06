@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://dozer.sourceforge.net"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <configuration>
+        <stop-on-errors>true</stop-on-errors>
+        <date-format>MM/dd/yyyy HH:mm</date-format>
+        <wildcard>true</wildcard>
+    </configuration>
+
+    <mapping>
+        <class-a>com.janusze.elista.user.ob.UserOB</class-a>
+        <class-b>com.janusze.elista.user.dto.UserDTO</class-b>
+    </mapping>
+    <mapping>
+        <class-a>com.janusze.elista.absence.ob.AbsenceOB</class-a>
+        <class-b>com.janusze.elista.absence.dto.AbsenceDTO</class-b>
+    </mapping>
+    <mapping>
+        <class-a>com.janusze.elista.schedule.ob.ScheduleOB</class-a>
+        <class-b>com.janusze.elista.schedule.dto.ScheduleDTO</class-b>
+    </mapping>
+    <mapping>
+        <class-a>com.janusze.elista.workedTime.ob.WorkedTimeOB</class-a>
+        <class-b>com.janusze.elista.workedTime.dto.WorkedTimeDTO</class-b>
+    </mapping>
+
+</mappings>

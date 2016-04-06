@@ -4,5 +4,9 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
                                  http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
     <persistence-unit name="default">
+        <class>com.janusze.elista.user.ob.UserOB</class>
+        <class>com.janusze.elista.absence.ob.AbsenceOB</class>
+        <class>com.janusze.elista.workedTime.ob.WorkedTimeOB</class>
+        <class>com.janusze.elista.schedule.ob.ScheduleOB</class>
     </persistence-unit>
 </persistence>

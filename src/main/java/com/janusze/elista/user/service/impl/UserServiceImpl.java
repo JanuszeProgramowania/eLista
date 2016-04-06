@@ -4,7 +4,7 @@ import com.janusze.elista.user.dto.UserDTO;
 import com.janusze.elista.user.ob.UserOB;
 import com.janusze.elista.user.repository.IUserRepository;
 import com.janusze.elista.user.service.IUserService;
-import com.janusze.elista.utils.converters.UserConverter;
+import com.janusze.elista.utils.converters.impl.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +21,8 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     IUserRepository iUserRepository;
+    @Autowired
+    UserConverter userConverter;
 
     @Override
     public UserDTO findUserById(Long aId) {
@@ -28,7 +30,7 @@ public class UserServiceImpl implements IUserService {
         if (pUserOB == null) {
             return null;
         }
-        return UserConverter.userOBtoDTO(pUserOB);
+        return userConverter.mapOBtoDTO(pUserOB);
     }
 
     @Override
@@ -36,7 +38,7 @@ public class UserServiceImpl implements IUserService {
         List<UserDTO> pResult = new ArrayList<>();
         List<UserOB> pUserList = iUserRepository.findAll();
         for (UserOB user : pUserList) {
-            pResult.add(UserConverter.userOBtoDTO(user));
+            pResult.add(userConverter.mapOBtoDTO(user));
         }
         return pResult;
     }
@@ -46,7 +48,7 @@ public class UserServiceImpl implements IUserService {
         List<UserDTO> pResult = new ArrayList<>();
         List<UserOB> pUserList = iUserRepository.findByNameStartsWith(aName);
         for (UserOB user : pUserList) {
-            pResult.add(UserConverter.userOBtoDTO(user));
+            pResult.add(userConverter.mapOBtoDTO(user));
         }
         return pResult;
     }
@@ -56,7 +58,7 @@ public class UserServiceImpl implements IUserService {
         List<UserDTO> pResult = new ArrayList<>();
         List<UserOB> pUserList = iUserRepository.findByLastNameStartsWith(aLastName);
         for (UserOB user : pUserList) {
-            pResult.add(UserConverter.userOBtoDTO(user));
+            pResult.add(userConverter.mapOBtoDTO(user));
         }
         return pResult;
     }
@@ -66,7 +68,7 @@ public class UserServiceImpl implements IUserService {
         List<UserDTO> pResult = new ArrayList<>();
         List<UserOB> pUserList = iUserRepository.findByFullName(aName, aLastName);
         for (UserOB user : pUserList) {
-            pResult.add(UserConverter.userOBtoDTO(user));
+            pResult.add(userConverter.mapOBtoDTO(user));
         }
         return pResult;
     }
@@ -80,12 +82,12 @@ public class UserServiceImpl implements IUserService {
         UserOB pUserOB = aUserDTO.getId() == null ? null : iUserRepository.findOne(aUserDTO.getId());
         // zapis nowego
         if (pUserOB == null) {
-            return UserConverter.userOBtoDTO(iUserRepository.save(UserConverter.userDTOtoOB(aUserDTO)));
+            return userConverter.mapOBtoDTO(iUserRepository.save(userConverter.mapDTOtoOB(aUserDTO)));
         }
         // edycja istniejacego
         pUserOB.setName(aUserDTO.getName());
         pUserOB.setLastName(aUserDTO.getLastName());
-        return UserConverter.userOBtoDTO(iUserRepository.save(pUserOB));
+        return userConverter.mapOBtoDTO(iUserRepository.save(pUserOB));
     }
 
     @Override

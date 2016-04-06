@@ -1,60 +1,33 @@
 package com.janusze.elista.user.dto;
 
+import com.janusze.elista.absence.ob.AbsenceOB;
+import com.janusze.elista.schedule.ob.ScheduleOB;
+import com.janusze.elista.workedTime.ob.WorkedTimeOB;
 import io.swagger.annotations.ApiModel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Tomasz Jodko on 2016-03-16.
  */
 @ApiModel
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDTO implements Serializable {
 
     private Long id;
     private Date techDate;
     private String name;
     private String lastName;
-
-    public UserDTO() {
-    }
-
-    public UserDTO(Long aId, Date aTechDate, String aName, String aLastName) {
-        id = aId;
-        techDate = aTechDate;
-        name = aName;
-        lastName = aLastName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long aId) {
-        id = aId;
-    }
-
-    public Date getTechDate() {
-        return techDate;
-    }
-
-    public void setTechDate(Date aTechDate) {
-        techDate = aTechDate;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String aName) {
-        name = aName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String aLastName) {
-        lastName = aLastName;
-    }
+    private String email;
+    private String password;
+    private List<AbsenceOB> absenceList;
+    private List<ScheduleOB> scheduleList;
+    private List<WorkedTimeOB> workedTimeList;
 }

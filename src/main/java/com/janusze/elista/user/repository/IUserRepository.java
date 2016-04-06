@@ -3,12 +3,14 @@ package com.janusze.elista.user.repository;
 import com.janusze.elista.user.ob.UserOB;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by Tomasz Jodko on 2016-03-16.
  */
+@Repository
 public interface IUserRepository extends JpaRepository<UserOB, Long> {
 
     // metody takie jak findAll, findOne, save, delete sa metodami bazowymi klasy JpaRepository, wiec mozna ich uzywac "z marszu"
