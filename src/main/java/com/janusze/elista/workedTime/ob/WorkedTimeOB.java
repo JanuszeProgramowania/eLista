@@ -24,7 +24,7 @@ public class WorkedTimeOB {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ4")
-    private long id;
+    private Long id;
     @ManyToOne
     private UserOB user;
     @Column(name = "DAY")

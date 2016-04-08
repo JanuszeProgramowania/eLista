@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,8 +17,8 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AbsenceDTO {
-    private long id;
+public class AbsenceDTO implements Serializable {
+    private Long id;
     private UserOB user;
     private EAbsenceType type;
     private Date date;

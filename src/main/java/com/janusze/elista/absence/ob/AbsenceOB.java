@@ -25,7 +25,7 @@ public class AbsenceOB implements Serializable {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ2")
-    private long id;
+    private Long id;
     @ManyToOne
     private UserOB user;
     @Column(name = "TYPE")
