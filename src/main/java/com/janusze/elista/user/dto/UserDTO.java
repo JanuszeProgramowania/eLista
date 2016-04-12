@@ -1,8 +1,8 @@
 package com.janusze.elista.user.dto;
 
-import com.janusze.elista.absence.ob.AbsenceOB;
-import com.janusze.elista.schedule.ob.ScheduleOB;
-import com.janusze.elista.workedTime.ob.WorkedTimeOB;
+import com.janusze.elista.absence.dto.AbsenceDTO;
+import com.janusze.elista.schedule.dto.ScheduleDTO;
+import com.janusze.elista.workedTime.dto.WorkedTimeDTO;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +27,7 @@ public class UserDTO implements Serializable {
     private String lastName;
     private String email;
     private String password;
-    private List<AbsenceOB> absenceList;
-    private List<ScheduleOB> scheduleList;
-    private List<WorkedTimeOB> workedTimeList;
+    private List<AbsenceDTO> absenceList;
+    private List<ScheduleDTO> scheduleList;
+    private List<WorkedTimeDTO> workedTimeList;
 }

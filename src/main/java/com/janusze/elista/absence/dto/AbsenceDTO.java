@@ -1,6 +1,6 @@
 package com.janusze.elista.absence.dto;
 
-import com.janusze.elista.user.ob.UserOB;
+import com.janusze.elista.user.dto.UserDTO;
 import com.janusze.elista.utils.enums.EAbsenceType;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class AbsenceDTO implements Serializable {
     private Long id;
-    private UserOB user;
+    private UserDTO user;
     private EAbsenceType type;
     private Date date;
     private int hours;

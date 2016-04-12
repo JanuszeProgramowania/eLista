@@ -1,6 +1,6 @@
 package com.janusze.elista.schedule.dto;
 
-import com.janusze.elista.user.ob.UserOB;
+import com.janusze.elista.user.dto.UserDTO;
 import com.janusze.elista.utils.enums.EDayOfTheWeek;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class ScheduleDTO implements Serializable {
     private Long id;
-    private UserOB user;
+    private UserDTO user;
     private EDayOfTheWeek dayOfTheWeek;
     private Date from;
     private Date to;

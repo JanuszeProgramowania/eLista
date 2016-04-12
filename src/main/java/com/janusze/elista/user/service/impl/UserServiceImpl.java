@@ -1,10 +1,19 @@
 package com.janusze.elista.user.service.impl;
 
+import com.janusze.elista.absence.dto.AbsenceDTO;
+import com.janusze.elista.absence.ob.AbsenceOB;
+import com.janusze.elista.schedule.dto.ScheduleDTO;
+import com.janusze.elista.schedule.ob.ScheduleOB;
 import com.janusze.elista.user.dto.UserDTO;
 import com.janusze.elista.user.ob.UserOB;
 import com.janusze.elista.user.repository.IUserRepository;
 import com.janusze.elista.user.service.IUserService;
+import com.janusze.elista.utils.converters.impl.AbsenceConverter;
+import com.janusze.elista.utils.converters.impl.ScheduleConverter;
 import com.janusze.elista.utils.converters.impl.UserConverter;
+import com.janusze.elista.utils.converters.impl.WorkedTimeConverter;
+import com.janusze.elista.workedTime.dto.WorkedTimeDTO;
+import com.janusze.elista.workedTime.ob.WorkedTimeOB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +32,12 @@ public class UserServiceImpl implements IUserService {
     IUserRepository iUserRepository;
     @Autowired
     UserConverter userConverter;
-
+    @Autowired
+    AbsenceConverter absenceConverter;
+    @Autowired
+    ScheduleConverter scheduleConverter;
+    @Autowired
+    WorkedTimeConverter workedTimeConverter;
     @Override
     public UserDTO findUserById(Long aId) {
         UserOB pUserOB = iUserRepository.findOne(aId);
@@ -87,6 +101,27 @@ public class UserServiceImpl implements IUserService {
         // edycja istniejacego
         pUserOB.setName(aUserDTO.getName());
         pUserOB.setLastName(aUserDTO.getLastName());
+        pUserOB.setEmail(aUserDTO.getEmail());
+        pUserOB.setPassword(aUserDTO.getPassword());
+
+        List<AbsenceOB> pAbsences = new ArrayList<>();
+        for (AbsenceDTO absence :
+                aUserDTO.getAbsenceList()) {
+            pAbsences.add(absenceConverter.mapDTOtoOB(absence));
+        }
+
+        List<ScheduleOB> pSchedules = new ArrayList<>();
+        for (ScheduleDTO schedule :
+                aUserDTO.getScheduleList()) {
+            pSchedules.add(scheduleConverter.mapDTOtoOB(schedule));
+        }
+
+        List<WorkedTimeOB> pWorkedTimes = new ArrayList<>();
+        for (WorkedTimeDTO workedTime :
+                aUserDTO.getWorkedTimeList()) {
+            pWorkedTimes.add(workedTimeConverter.mapDTOtoOB(workedTime));
+        }
+
         return userConverter.mapOBtoDTO(iUserRepository.save(pUserOB));
     }
 
