@@ -26,8 +26,6 @@ public class AbsenceOB implements Serializable {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ2")
     private Long id;
-    @ManyToOne
-    private UserOB user;
     @Column(name = "TYPE")
     private EAbsenceType type;
     @Column(name = "DATE")
@@ -38,6 +36,8 @@ public class AbsenceOB implements Serializable {
     @Column(name = "TECHDATE")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date techDate;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private UserOB user;
 
     @PrePersist
     @PreUpdate

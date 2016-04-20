@@ -19,9 +19,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class ScheduleDTO implements Serializable {
     private Long id;
-    private UserDTO user;
     private EDayOfTheWeek dayOfTheWeek;
-    private Date from;
-    private Date to;
+    private Date start;
+    private Date finish;
     private Date techDate;
+    private UserDTO user;
 }

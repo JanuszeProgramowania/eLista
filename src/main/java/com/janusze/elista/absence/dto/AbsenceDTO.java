@@ -19,9 +19,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class AbsenceDTO implements Serializable {
     private Long id;
-    private UserDTO user;
     private EAbsenceType type;
     private Date date;
     private int hours;
     private Date techDate;
+    private UserDTO user;
 }

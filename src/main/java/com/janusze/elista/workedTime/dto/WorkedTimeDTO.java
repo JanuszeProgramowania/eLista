@@ -18,10 +18,10 @@ import java.util.Date;
 @NoArgsConstructor
 public class WorkedTimeDTO implements Serializable {
     private Long id;
-    private UserDTO user;
     private Date day;
     private Date start;
     private Date finish;
     private String description;
     private Date techDate;
+    private UserDTO user;
 }

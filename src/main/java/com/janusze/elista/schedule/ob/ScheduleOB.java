@@ -26,8 +26,6 @@ public class ScheduleOB implements Serializable {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ3")
     private Long id;
-    @ManyToOne
-    private UserOB user;
     @Column(name = "DAY_OF_THE_WEEK")
     private EDayOfTheWeek dayOfTheWeek;
     @Column(name = "START")
@@ -39,6 +37,10 @@ public class ScheduleOB implements Serializable {
     @Column(name = "TECHDATE")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date techDate;
+
+    @ManyToOne
+    private UserOB user;
+
 
     @PrePersist
     @PreUpdate

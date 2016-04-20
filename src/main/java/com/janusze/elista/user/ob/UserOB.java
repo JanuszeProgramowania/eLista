@@ -1,8 +1,5 @@
 package com.janusze.elista.user.ob;
 
-import com.janusze.elista.absence.ob.AbsenceOB;
-import com.janusze.elista.schedule.ob.ScheduleOB;
-import com.janusze.elista.workedTime.ob.WorkedTimeOB;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Tomasz Jodko on 2016-03-16.
@@ -42,12 +38,7 @@ public class UserOB implements Serializable { // interfejs wymagany dla obiektow
     private String email;
     @Column(name = "PASSWORD")
     private String password;
-    @OneToMany(mappedBy = "user")
-    private List<AbsenceOB> absenceList;
-    @OneToMany(mappedBy = "user")
-    private List<ScheduleOB> scheduleList;
-    @OneToMany(mappedBy = "user")
-    private List<WorkedTimeOB> workedTimeList;
+
     //TODO: user groups
 
 
