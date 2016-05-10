@@ -1,5 +1,6 @@
 package com.janusze.elista.user.ob;
 
+import com.janusze.elista.utils.enums.EUserAuthority;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,8 +39,13 @@ public class UserOB implements Serializable { // interfejs wymagany dla obiektow
     private String email;
     @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "AUTHORITY")
+    private EUserAuthority authority;
 
-    //TODO: user groups
+    @Transient
+    private long expires;
+
+
 
 
     @PrePersist

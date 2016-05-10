@@ -6,6 +6,7 @@ import com.janusze.elista.user.repository.IUserRepository;
 import com.janusze.elista.user.service.IUserService;
 import com.janusze.elista.utils.converters.impl.UserConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -82,12 +83,22 @@ public class UserServiceImpl implements IUserService {
         UserOB pUserOB = aUserDTO.getId() == null ? null : iUserRepository.findOne(aUserDTO.getId());
         // zapis nowego
         if (pUserOB == null) {
+            aUserDTO.setPassword(new BCryptPasswordEncoder().encode(aUserDTO.getPassword()));
             return userConverter.mapOBtoDTO(iUserRepository.save(userConverter.mapDTOtoOB(aUserDTO)));
         }
         // edycja istniejacego
         pUserOB.setName(aUserDTO.getName());
         pUserOB.setLastName(aUserDTO.getLastName());
         return userConverter.mapOBtoDTO(iUserRepository.save(pUserOB));
+    }
+
+    @Override
+    public UserDTO findUserByEmail(String email) {
+        UserOB pUserOB = iUserRepository.findByEmail(email);
+        if (pUserOB == null) {
+            return null;
+        }
+        return userConverter.mapOBtoDTO(pUserOB);
     }
 
     @Override

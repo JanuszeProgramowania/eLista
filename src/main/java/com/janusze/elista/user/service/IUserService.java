@@ -19,6 +19,8 @@ public interface IUserService {
 
     List<UserDTO> findUsersByNames(String aName, String aLastName);
 
+    UserDTO findUserByEmail(String email);
+
     UserDTO saveUser(UserDTO aUserDTO);
 
     void deleteUser(Long aId);

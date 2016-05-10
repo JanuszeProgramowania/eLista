@@ -1,10 +1,13 @@
 package com.janusze.elista.user.api;
 
+import com.janusze.elista.auth.UserAuthentication;
 import com.janusze.elista.user.dto.UserDTO;
 import com.janusze.elista.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +25,16 @@ public class UserController {
     @Autowired
     IUserService userService;
 
-    @RequestMapping(value = "getById/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/current", method = RequestMethod.GET)
+    public ResponseEntity<UserDTO> getCurrent() {
+        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication instanceof UserAuthentication) {
+            return new ResponseEntity<>(((UserAuthentication) authentication).getDetails(), HttpStatus.OK);
+        }
+        return null;
+    }
+
+    @RequestMapping(value = "/getById/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserDTO> findUserById(@PathVariable("id") Long aId) {
         return new ResponseEntity<>(userService.findUserById(aId), HttpStatus.OK);
     }
@@ -66,4 +78,5 @@ public class UserController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }

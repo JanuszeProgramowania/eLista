@@ -19,6 +19,9 @@ public interface IUserRepository extends JpaRepository<UserOB, Long> {
 
     List<UserOB> findByLastNameStartsWith(String aLastName);
 
+    @Query("SELECT u FROM UserOB u WHERE u.email = ?1")
+    UserOB findByEmail(String email);
+
     @Query("SELECT u FROM UserOB u WHERE u.name = ?1 AND u.lastName = ?2")
     List<UserOB> findByFullName(String aName, String aLastName);
 }
