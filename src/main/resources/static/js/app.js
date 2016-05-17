@@ -1,9 +1,18 @@
-var app = angular.module('eLista', ['ngRoute', 'authControllers']);
+var app = angular.module('app', ['ngRoute', 'smart-table']);
 
-app.config(function ($routeProvider) {
+app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
+        .when('/', {
+            templateUrl: 'templates/home.html'
+        })
+        .when('/home', {
+            templateUrl: 'templates/home.html'
+        })
 
-        .otherwise({
-            redirectTo: '/login'
-        });
-});
+        .when('/absence', {
+            templateUrl: 'templates/absence.html',
+            controller: 'AbsenceController',
+        })
+        .otherwise({redirectTo: '/'});
+}]);
+

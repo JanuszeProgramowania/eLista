@@ -2,6 +2,7 @@ package com.janusze.elista.user.api;
 
 import com.janusze.elista.auth.UserAuthentication;
 import com.janusze.elista.user.dto.UserDTO;
+import com.janusze.elista.user.dto.UserDetailsDTO;
 import com.janusze.elista.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class UserController {
     IUserService userService;
 
     @RequestMapping(value = "/current", method = RequestMethod.GET)
-    public ResponseEntity<UserDTO> getCurrent() {
+    public ResponseEntity<UserDetailsDTO> getCurrent() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof UserAuthentication) {
             return new ResponseEntity<>(((UserAuthentication) authentication).getDetails(), HttpStatus.OK);

@@ -3,6 +3,7 @@ package com.janusze.elista.auth;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.janusze.elista.user.dto.UserDTO;
+import com.janusze.elista.user.dto.UserDetailsDTO;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -55,8 +56,8 @@ public final class TokenHandler {
         return null;
     }
 
-    public String createTokenForUser(UserDTO aUserDTO) {
-        byte[] userBytes = toJSON(aUserDTO);
+    public String createTokenForUser(UserDetailsDTO aUserDetailsDTO) {
+        byte[] userBytes = toJSON(aUserDetailsDTO);
         byte[] hash = createHmac(userBytes);
         final StringBuilder sb = new StringBuilder(170);
         sb.append(toBase64(userBytes));
@@ -73,9 +74,9 @@ public final class TokenHandler {
         }
     }
 
-    private byte[] toJSON(UserDTO aUserDTO) {
+    private byte[] toJSON(UserDetailsDTO aUserDetailsDTO) {
         try {
-            return new ObjectMapper().writeValueAsBytes(aUserDTO);
+            return new ObjectMapper().writeValueAsBytes(aUserDetailsDTO);
         } catch (JsonProcessingException e) {
             throw new IllegalStateException(e);
         }

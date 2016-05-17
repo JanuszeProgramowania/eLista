@@ -1,5 +1,7 @@
 package com.janusze.elista.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.janusze.elista.utils.enums.EUserAuthority;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -20,46 +22,57 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDTO implements UserDetails {
 
     private Long id;
+    @JsonIgnore
     private Date techDate;
     private String name;
     private String lastName;
     private String email;
     private String password;
-    private EUserAuthority role;
+    private String username;
     private long expires;
     private EUserAuthority authority;
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<EUserAuthority> singleKurwaAuthority = new HashSet<>();
-        singleKurwaAuthority.add(authority);
-        return singleKurwaAuthority;
+        Set<EUserAuthority> auth = new HashSet<>();
+        auth.add(authority);
+        if (authority == EUserAuthority.ROLE_ADMIN) {
+            auth.add(EUserAuthority.ROLE_USER);
+        }
+        return auth;
     }
 
     @Override
+    @JsonIgnore
     public String getUsername() {
         return email;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }

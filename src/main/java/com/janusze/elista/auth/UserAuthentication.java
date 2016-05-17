@@ -1,6 +1,7 @@
 package com.janusze.elista.auth;
 
 import com.janusze.elista.user.dto.UserDTO;
+import com.janusze.elista.user.dto.UserDetailsDTO;
 import com.janusze.elista.utils.enums.EUserAuthority;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -40,8 +41,8 @@ public class UserAuthentication implements Authentication {
     }
 
     @Override
-    public UserDTO getDetails() {
-        return userDTO;
+    public UserDetailsDTO getDetails() {
+        return new UserDetailsDTO(userDTO.getId(), userDTO.getName(), userDTO.getLastName(), userDTO.getEmail());
     }
 
     @Override

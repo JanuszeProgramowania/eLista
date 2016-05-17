@@ -1,6 +1,7 @@
 package com.janusze.elista.auth;
 
 import com.janusze.elista.user.dto.UserDTO;
+import com.janusze.elista.user.dto.UserDetailsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class TokenAuthenticationService {
     }
 
     public void addAuthentication(HttpServletResponse response, UserAuthentication authentication) {
-        final UserDTO user = authentication.getDetails();
+        final UserDetailsDTO user = authentication.getDetails();
         user.setExpires(System.currentTimeMillis() + TEN_DAYS);
         response.addHeader(AUTH_HEADER_NAME, tokenHandler.createTokenForUser(user));
     }
