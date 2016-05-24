@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'smart-table']);
+var app = angular.module('app', ['ngRoute', 'smart-table', 'ui.bootstrap']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider

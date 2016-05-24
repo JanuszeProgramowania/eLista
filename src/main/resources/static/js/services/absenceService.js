@@ -14,19 +14,28 @@ app.factory('absenceFactory', ['$http', function ($http) {
         });
     };
 
-    absenceFactory.getAbsence = function (id) {
+    absenceFactory.getAbsence = function (id, callback) {
         return $http.get(urlBase + '/getById/' + id).then(function (response) {
             if (response.data.error) {
                 return null;
             } else {
-                return response.data;
+                absenceFactory.returnedData = response.data;
+                callback(absenceFactory.returnedData);
             }
         });
     };
 
-    absenceFactory.saveAbsence = function (absence) {
-        return $http.post(urlBase + '/saveAbsence', absence);
+    absenceFactory.saveAbsence = function (wrapper, callback) {
+        return $http.post(urlBase + '/saveAbsence', wrapper).then(function (response) {
+            if (response.data.error) {
+                return null;
+            } else {
+                absenceFactory.returnedData = response.data;
+                callback(absenceFactory.returnedData);
+            }
+        });
     };
+
 
     absenceFactory.deleteAbsence = function (id) {
         return $http.put(urlBase + '/deleteById/' + id);

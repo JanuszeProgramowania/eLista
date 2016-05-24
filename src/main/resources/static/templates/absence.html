@@ -1,6 +1,55 @@
-<div>
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#newAbsForm">New Absence</button>
+<div class="collapse" id="newAbsForm">
+    <div class="well well-sm">
+        <div class="form-inline">
+            <label for="dp1">Date:</label>
+            <div class="input-group">
+                <input type="text" id="dp1" class="form-control" uib-datepicker-popup ng-model="newWrapper.absence.date"
+                       is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+            <label for="newAbsHours">Hours:</label>
+            <input class="form-control" type="data" id="newAbsHours" placeholder="Hours"
+                   ng-model="newWrapper.absence.hours">
+            <label for="newAbsType">Type:</label>
+            <select class="form-control" id="newAbsType" ng-model="newWrapper.absence.type">
+                <option>URLOP</option>
+                <option>LEKARSKIE</option>
+                <option>INNE</option>
+            </select>
+            <button class="btn btn-success" ng-click="saveNewAbsence()">Save</button>
+        </div>
+    </div>
+</div>
 
 
+<div class="collapse" id="selectedAbsForm">
+    <div class="well well-sm">
+        <div class="form-inline">
+            <label for="dp2">Date:</label>
+            <div class="input-group">
+                <input type="text" id="dp2" class="form-control" uib-datepicker-popup ng-model="selectedAbs.date"
+                       is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+            <label for="hours">Hours:</label>
+            <input class="form-control" type="data" id="hours" placeholder="Hours" ng-model="selectedAbs.hours">
+            <label for="absType">Type:</label>
+            <select class="form-control" id="absType" ng-model="selectedAbs.type">
+                <option>URLOP</option>
+                <option>LEKARSKIE</option>
+                <option>INNE</option>
+            </select>
+            <button class="btn btn-success" ng-click="saveAbsence()">Save</button>
+            <button class="btn btn-danger" ng-click="deleteAbsence()">Delete</button>
+        </div>
+</div>
 </div>
 <div>
     <table st-table="displayedCollection" st-safe-src="userAbsences" class="table table-striped">
@@ -13,7 +62,7 @@
         </thead>
         <tbody>
         <tr st-select-row="row" ng-repeat="row in displayedCollection">
-            <td>{{row.date | date}}</td>
+            <td>{{row.date | date : "dd/MM/yyyy" }}</td>
             <td>{{row.hours}}</td>
             <td>{{row.type}}</td>
         </tr>
