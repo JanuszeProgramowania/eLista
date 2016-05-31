@@ -1,0 +1,99 @@
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#newSchForm">New Schedule</button>
+<div class="collapse" id="newSchForm">
+    <div class="well well-sm">
+        <div class="form-inline">
+            <label for="dp1">Start:</label>
+            <div class="input-group">
+                <input type="text" id="dp1" class="form-control"
+                       ng-model="newWrapper.schedule.start" datetime-picker="MM/dd/yyyy HH:mm"
+                       is-open="popup1.opened" ng-required="true" close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+            <label for="dp2">Finish:</label>
+            <div class="input-group">
+                <input type="text" id="dp2" class="form-control"
+                       ng-model="newWrapper.schedule.finish"
+                       is-open="popup2.opened" datetime-picker="MM/dd/yyyy HH:mm" ng-required="true"
+                       close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+            <label for="newSchDayOfTheWeek">Day:</label>
+            <select class="form-control" id="newSchDayOfTheWeek" ng-model="newWrapper.schedule.dayOfTheWeek">
+                <option>MONDAY</option>
+                <option>TUEASDAY</option>
+                <option>WEDNESDAY</option>
+                <option>THURSDAY</option>
+                <option>FRIDAY</option>
+                <option>SATURDAY</option>
+                <option>SUNDAY</option>
+            </select>
+            <button class="btn btn-success" ng-click="saveNewSchedule()">Save</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="collapse" id="selectedSchForm">
+    <div class="well well-sm">
+        <div class="form-inline">
+            <label for="dp3">Start:</label>
+            <div class="input-group">
+                <input type="text" id="dp3" class="form-control" ng-model="selectedSch.start"
+                       max-date="selectedSch.finish"
+                       is-open="popup3.opened" datetime-picker="dd/MM/yyyy HH:mm" ng-required="true"
+                       close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open3()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+            <label for="dp4">Finish:</label>
+            <div class="input-group">
+                <input type="text" id="dp4" class="form-control" ng-model="selectedSch.finish"
+                       min-date="selectedSch.start"
+                       is-open="popup4.opened" datetime-picker="dd/MM/yyyy HH:mm" ng-required="true"
+                       close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open4()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+            <label for="selectedSchDayOfTheWeek">Day:</label>
+            <select class="form-control" id="selectedSchDayOfTheWeek" ng-model="selectedSch.dayOfTheWeek">
+                <option>MONDAY</option>
+                <option>TUEASDAY</option>
+                <option>WEDNESDAY</option>
+                <option>THURSDAY</option>
+                <option>FRIDAY</option>
+                <option>SATURDAY</option>
+                <option>SUNDAY</option>
+            </select>
+            <button class="btn btn-success" ng-click="saveSchedule()">Save</button>
+            <button class="btn btn-danger" ng-click="deleteSchedule()">Delete</button>
+        </div>
+    </div>
+</div>
+<div>
+    <table st-table="displayedCollection" st-safe-src="userSchedules" class="table table-striped">
+        <thead>
+        <tr>
+            <th st-sort="start">Start:</th>
+            <th st-sort="finish">Finish:</th>
+            <th st-sort="dayOfTheWeek">Day:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr st-select-row="row" ng-repeat="row in displayedCollection">
+            <td>{{row.start | date : "dd/MM/yyyy HH:mm" }}</td>
+            <td>{{row.finish | date : "dd/MM/yyyy HH:mm" }}</td>
+            <td>{{row.dayOfTheWeek}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
