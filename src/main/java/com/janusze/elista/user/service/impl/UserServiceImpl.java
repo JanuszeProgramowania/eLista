@@ -1,6 +1,7 @@
 package com.janusze.elista.user.service.impl;
 
 import com.janusze.elista.user.dto.UserDTO;
+import com.janusze.elista.user.dto.UserDetailsDTO;
 import com.janusze.elista.user.ob.UserOB;
 import com.janusze.elista.user.repository.IUserRepository;
 import com.janusze.elista.user.service.IUserService;
@@ -83,10 +84,12 @@ public class UserServiceImpl implements IUserService {
         UserOB pUserOB = aUserDTO.getId() == null ? null : iUserRepository.findOne(aUserDTO.getId());
         // zapis nowego
         if (pUserOB == null) {
-            aUserDTO.setPassword(new BCryptPasswordEncoder().encode(aUserDTO.getPassword()));
-            return userConverter.mapOBtoDTO(iUserRepository.save(userConverter.mapDTOtoOB(aUserDTO)));
+            pUserOB = userConverter.mapDTOtoOB(aUserDTO);
+            pUserOB.setPassword(new BCryptPasswordEncoder().encode(aUserDTO.getPassword()));
+            return userConverter.mapOBtoDTO(iUserRepository.save(pUserOB));
         }
         // edycja istniejacego
+        pUserOB.setEmail(aUserDTO.getEmail());
         pUserOB.setName(aUserDTO.getName());
         pUserOB.setLastName(aUserDTO.getLastName());
         return userConverter.mapOBtoDTO(iUserRepository.save(pUserOB));
@@ -99,6 +102,15 @@ public class UserServiceImpl implements IUserService {
             return null;
         }
         return userConverter.mapOBtoDTO(pUserOB);
+    }
+
+    @Override
+    public void changePassword(UserDetailsDTO aUserDetailsDTO, String aNewPassword) {
+        UserOB pUserOB = iUserRepository.findOne(aUserDetailsDTO.getId());
+        if (pUserOB != null) {
+            pUserOB.setPassword(new BCryptPasswordEncoder().encode(aNewPassword));
+
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.janusze.elista.workedTime.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.janusze.elista.user.dto.UserDTO;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -18,10 +19,10 @@ import java.util.Date;
 @NoArgsConstructor
 public class WorkedTimeDTO implements Serializable {
     private Long id;
-    private Date day;
     private Date start;
     private Date finish;
     private String description;
     private Date techDate;
+    @JsonIgnore
     private UserDTO user;
 }

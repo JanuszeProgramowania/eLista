@@ -1,0 +1,32 @@
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#changePasswordForm">Change Password
+</button>
+<div class="collapse" id="changePasswordForm">
+    <div class="well well-sm">
+        <form id="myForm" data-toggle="validator" role="form">
+
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="newPassword">New password:</label>
+                    <input type="password" class="form-control" id="newPassword" placeholder="Wprowadź nowe hasło"
+                           ng-model="newPassword">
+                </div>
+                <div class="form-group">
+                    <label for="confPassword">Confirm new password:</label>
+                    <input type="password" class="form-control" id="confPassword" data-match="#newPassword"
+                           data-match-error="Passwords do not match." placeholder="Potwierdź nowe hasło">
+                    <div class="help-block with-errors"></div>
+                </div>
+                <button class="btn btn-success" ng-click="changePassword()">Confirm</button>
+
+                <div class="alert alert-success" ng-show="cpSuccess">
+                    <strong>Success!</strong> Password changed.
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $('#myForm').validator()
+</script>

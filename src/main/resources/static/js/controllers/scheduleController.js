@@ -25,6 +25,9 @@ app.controller('ScheduleController', ['$scope', '$rootScope', 'scheduleFactory',
         }
     };
 
+    $scope.timeOptions = {
+        showMeridian: false
+    };
 
     $scope.popup1 = {
         opened: false
@@ -52,6 +55,14 @@ app.controller('ScheduleController', ['$scope', '$rootScope', 'scheduleFactory',
         $scope.popup4.opened = true;
     };
 
+    $scope.getters = {
+        startDate: function (row) {
+            return new Date(row.start);
+        },
+        finishDate: function (row) {
+            return new Date(row.finish);
+        }
+    }
 
     $scope.saveNewSchedule = function () {
         $scope.newWrapper.user = {
@@ -94,10 +105,12 @@ app.controller('ScheduleController', ['$scope', '$rootScope', 'scheduleFactory',
         var selectedCount = 0;
         row.filter(function (r) {
             if (r.isSelected) {
+                r.start = new Date(r.start);
+                r.finish = new Date(r.finish);
                 console.log(r);
+
                 $scope.selectedSch = r;
-                $scope.selectedSch.start = r.start.toDate();
-                $scope.selectedSch.finish = r.finish.toDate();
+
                 selectedCount++;
             }
         });

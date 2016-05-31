@@ -1,0 +1,85 @@
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#newWtForm">New Worked Time</button>
+<div class="collapse" id="newWtForm">
+    <div class="well well-sm">
+        <div class="form-inline">
+            <label for="dp1">Start:</label>
+            <div class="input-group">
+                <input type="text" id="dp1" class="form-control"
+                       ng-model="newWrapper.workedTime.start" datetime-picker="dd/MM/yyyy HH:mm"
+                       timepicker-options="timeOptions"
+                       is-open="popup1.opened" ng-required="true" close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+            <label for="dp2">Finish:</label>
+            <div class="input-group">
+                <input type="text" id="dp2" class="form-control"
+                       ng-model="newWrapper.workedTime.finish" timepicker-options="timeOptions"
+                       is-open="popup2.opened" datetime-picker="dd/MM/yyyy HH:mm" ng-required="true"
+                       close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+            <label for="description1">Description:</label>
+            <textarea class="form-control" ng-model="newWrapper.workedTime.description" rows="1" id="description1"> Description... </textarea>
+            <button class="btn btn-success" ng-click="saveNewWorkedTime()">Save</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="collapse" id="selectedWtForm">
+    <div class="well well-sm">
+        <div class="form-inline">
+            <label for="dp3">Start:</label>
+            <div class="input-group">
+                <input type="text" id="dp3" class="form-control" ng-model="selectedWt.start"
+                       max-date="selectedSch.finish"
+                       is-open="popup3.opened" datetime-picker="dd/MM/yyyy HH:mm" ng-required="true"
+                       close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open3()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+            <label for="dp4">Finish:</label>
+            <div class="input-group">
+                <input type="text" id="dp4" class="form-control" ng-model="selectedWt.finish"
+                       min-date="selectedSch.start"
+                       is-open="popup4.opened" datetime-picker="dd/MM/yyyy HH:mm" ng-required="true"
+                       close-text="Close"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open4()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </div>
+            <label for="description2">Description:</label>
+            <textarea class="form-control" ng-model="selectedWt.description" rows="1"
+                      id="description2"> Description... </textarea>
+            <button class="btn btn-success" ng-click="saveWorkedTime()">Save</button>
+            <button class="btn btn-danger" ng-click="deleteWorkedTime()">Delete</button>
+        </div>
+    </div>
+</div>
+<div>
+    <table st-table="displayedCollection" st-safe-src="userWorkedTimes" class="table table-striped">
+        <thead>
+        <tr>
+            <th st-sort="getters.startDate">Start:</th>
+            <th st-sort="getters.finishDate">Finish:</th>
+            <th>Description:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr st-select-row="row" ng-repeat="row in displayedCollection">
+            <td>{{row.start | date : "dd/MM/yyyy HH:mm" }}</td>
+            <td>{{row.finish | date : "dd/MM/yyyy HH:mm" }}</td>
+            <td>{{row.description}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

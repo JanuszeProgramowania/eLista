@@ -5,7 +5,8 @@
             <label for="dp1">Start:</label>
             <div class="input-group">
                 <input type="text" id="dp1" class="form-control"
-                       ng-model="newWrapper.schedule.start" datetime-picker="MM/dd/yyyy HH:mm"
+                       ng-model="newWrapper.schedule.start" datetime-picker="dd/MM/yyyy HH:mm"
+                       timepicker-options="timeOptions"
                        is-open="popup1.opened" ng-required="true" close-text="Close"/>
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open1()"><i
@@ -15,8 +16,8 @@
             <label for="dp2">Finish:</label>
             <div class="input-group">
                 <input type="text" id="dp2" class="form-control"
-                       ng-model="newWrapper.schedule.finish"
-                       is-open="popup2.opened" datetime-picker="MM/dd/yyyy HH:mm" ng-required="true"
+                       ng-model="newWrapper.schedule.finish" timepicker-options="timeOptions"
+                       is-open="popup2.opened" datetime-picker="dd/MM/yyyy HH:mm" ng-required="true"
                        close-text="Close"/>
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open2()"><i
@@ -67,7 +68,7 @@
             <label for="selectedSchDayOfTheWeek">Day:</label>
             <select class="form-control" id="selectedSchDayOfTheWeek" ng-model="selectedSch.dayOfTheWeek">
                 <option>MONDAY</option>
-                <option>TUEASDAY</option>
+                <option>TUESDAY</option>
                 <option>WEDNESDAY</option>
                 <option>THURSDAY</option>
                 <option>FRIDAY</option>
@@ -83,8 +84,8 @@
     <table st-table="displayedCollection" st-safe-src="userSchedules" class="table table-striped">
         <thead>
         <tr>
-            <th st-sort="start">Start:</th>
-            <th st-sort="finish">Finish:</th>
+            <th st-sort="getters.startDate">Start:</th>
+            <th st-sort="getters.finishDate">Finish:</th>
             <th st-sort="dayOfTheWeek">Day:</th>
         </tr>
         </thead>

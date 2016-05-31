@@ -85,7 +85,6 @@ public class WorkedTimeServiceImpl implements IWorkedTimeService {
             pWorkedTimeOB.setUser(pUserOB);
             return workedTimeConverter.mapOBtoDTO(iWorkedTimeRepository.save(pWorkedTimeOB));
         }
-        pWorkedTimeOB.setDay(pWorkedTimeDTO.getDay());
         pWorkedTimeOB.setFinish(pWorkedTimeDTO.getFinish());
         pWorkedTimeOB.setStart(pWorkedTimeDTO.getStart());
         pWorkedTimeOB.setDescription(pWorkedTimeDTO.getDescription());

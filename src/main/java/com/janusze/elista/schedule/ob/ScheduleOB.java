@@ -38,7 +38,7 @@ public class ScheduleOB implements Serializable {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date techDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserOB user;
 
 

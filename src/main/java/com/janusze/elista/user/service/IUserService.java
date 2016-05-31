@@ -1,6 +1,7 @@
 package com.janusze.elista.user.service;
 
 import com.janusze.elista.user.dto.UserDTO;
+import com.janusze.elista.user.dto.UserDetailsDTO;
 
 import java.util.List;
 
@@ -22,6 +23,8 @@ public interface IUserService {
     UserDTO findUserByEmail(String email);
 
     UserDTO saveUser(UserDTO aUserDTO);
+
+    void changePassword(UserDetailsDTO aUserDetailsDTO, String aNewPassword);
 
     void deleteUser(Long aId);
 }

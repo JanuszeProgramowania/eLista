@@ -11,11 +11,23 @@ app.config(['$routeProvider', function ($routeProvider) {
 
         .when('/absence', {
             templateUrl: 'templates/absence.html',
-            controller: 'AbsenceController',
+            controller: 'AbsenceController'
         })
         .when('/schedule', {
             templateUrl: 'templates/schedule.html',
-            controller: 'ScheduleController',
+            controller: 'ScheduleController'
+        })
+        .when('/workedtime', {
+            templateUrl: 'templates/workedtime.html',
+            controller: 'WorkedTimeController'
+        })
+        .when('/account', {
+            templateUrl: 'templates/account.html',
+            controller: 'AccountController'
+        })
+        .when('/admin', {
+            templateUrl: 'templates/admin.html',
+            controller: 'AdminController'
         })
         .otherwise({redirectTo: '/'});
 }]);

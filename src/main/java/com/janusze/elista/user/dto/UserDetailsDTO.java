@@ -1,6 +1,7 @@
 package com.janusze.elista.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.janusze.elista.utils.enums.EUserAuthority;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,14 +24,16 @@ public class UserDetailsDTO implements UserDetails {
     private String name;
     private String lastName;
     private String email;
+    private EUserAuthority authority;
     private Long expires;
 
 
-    public UserDetailsDTO(Long id, String name, String lastName, String email) {
+    public UserDetailsDTO(Long id, String name, String lastName, String email, EUserAuthority authority) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
+        this.authority = authority;
     }
 
     @Override

@@ -1,0 +1,48 @@
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#newUserForm">New User</button>
+<div class="collapse" id="newUserForm">
+    <label for="newUserEmail">Email:</label>
+    <input type="email" class="form-control" id="newUserEmail" placeholder="Wprowadź adres email"
+           ng-model="newUser.email">
+    <label for="newUserName">Name:</label>
+    <input type="text" class="form-control" id="newUserName" placeholder="Wprowadź imię:" ng-model="newUser.name">
+    <label for="newUserLastName">Last name:</label>
+    <input type="text" class="form-control" id="newUserLastName" placeholder="Wprowadź nazwisko"
+           ng-model="newUser.lastName">
+    <label for="newUserPassword">Password:</label>
+    <input type="password" class="form-control" id="newUserPassword" placeholder="Wprowadź hasło"
+           ng-model="newUser.password">
+    <button class="btn btn-success" ng-click="saveNewUser()">Save</button>
+</div>
+
+<div class="collapse" id="selectedUserForm">
+    <label for="selectedUserEmail">Email:</label>
+    <input type="email" class="form-control" id="selectedUserEmail" placeholder="Wprowadź adres email"
+           ng-model="selectedUser.email">
+    <label for="selectedUserName">Name:</label>
+    <input type="text" class="form-control" id="selectedUserName" placeholder="Wprowadź imię:"
+           ng-model="selectedUser.name">
+    <label for="selectedUserLastName">Last name:</label>
+    <input type="text" class="form-control" id="selectedUserLastName" placeholder="Wprowadź nazwisko"
+           ng-model="selectedUser.lastName">
+    <button class="btn btn-success" ng-click="saveUser()">Save</button>
+    <button class="btn btn-danger" ng-click="deleteUser()">Delete</button>
+</div>
+<div>
+    <table st-table="displayedCollection" st-safe-src="users" class="table table-striped">
+        <thead>
+        <tr>
+            <th st-sort="email">Email</th>
+            <th st-sort="name">Name</th>
+            <th st-sort="lastName">Last Name</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr st-select-row="row" ng-repeat="row in displayedCollection">
+            <td>{{row.email}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.lastName}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

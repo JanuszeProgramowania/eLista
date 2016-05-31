@@ -42,7 +42,7 @@ public class UserAuthentication implements Authentication {
 
     @Override
     public UserDetailsDTO getDetails() {
-        return new UserDetailsDTO(userDTO.getId(), userDTO.getName(), userDTO.getLastName(), userDTO.getEmail());
+        return new UserDetailsDTO(userDTO.getId(), userDTO.getName(), userDTO.getLastName(), userDTO.getEmail(), userDTO.getAuthority());
     }
 
     @Override

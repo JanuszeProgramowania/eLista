@@ -25,9 +25,6 @@ public class WorkedTimeOB {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ4")
     private Long id;
-    @Column(name = "DAY")
-    @Temporal(value = TemporalType.TIMESTAMP)
-    private Date day;
     @Column(name = "START")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date start;
@@ -39,7 +36,7 @@ public class WorkedTimeOB {
     @Column(name = "TECHDATE")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date techDate;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserOB user;
 
 

@@ -36,7 +36,7 @@ public class AbsenceOB implements Serializable {
     @Column(name = "TECHDATE")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date techDate;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserOB user;
 
     @PrePersist

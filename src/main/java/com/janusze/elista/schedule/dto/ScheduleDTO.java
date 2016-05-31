@@ -1,5 +1,6 @@
 package com.janusze.elista.schedule.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.janusze.elista.user.dto.UserDTO;
 import com.janusze.elista.utils.enums.EDayOfTheWeek;
 import io.swagger.annotations.ApiModel;
@@ -23,5 +24,6 @@ public class ScheduleDTO implements Serializable {
     private Date start;
     private Date finish;
     private Date techDate;
+    @JsonIgnore
     private UserDTO user;
 }

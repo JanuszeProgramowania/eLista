@@ -1,5 +1,6 @@
 package com.janusze.elista.absence.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.janusze.elista.user.dto.UserDTO;
 import com.janusze.elista.utils.enums.EAbsenceType;
 import io.swagger.annotations.ApiModel;
@@ -23,5 +24,6 @@ public class AbsenceDTO implements Serializable {
     private Date date;
     private int hours;
     private Date techDate;
+    @JsonIgnore
     private UserDTO user;
 }

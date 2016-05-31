@@ -47,6 +47,7 @@ public class UserDTO implements UserDetails {
         return auth;
     }
 
+
     @Override
     @JsonIgnore
     public String getUsername() {

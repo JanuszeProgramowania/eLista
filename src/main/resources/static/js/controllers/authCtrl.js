@@ -1,15 +1,20 @@
 app.controller('AuthCtrl', function ($scope, $rootScope, $http, TokenStorage) {
     $rootScope.authenticated = false;
+    $rootScope.admin = false;
     $rootScope.token; // For display purposes only
 
     $scope.init = function () {
         $http.get('/elista/users/current').success(function (user) {
             $rootScope.authenticated = false;
+            $rootScope.admin = false;
             if (typeof TokenStorage.retrieve() !== 'undefined' && TokenStorage.retrieve() !== null) {
                 $rootScope.authenticated = true;
 
                 // For display purposes only
                 $rootScope.token = JSON.parse(atob(TokenStorage.retrieve().split('.')[0]));
+                if ($rootScope.token.authority === "ROLE_ADMIN") {
+                    $rootScope.admin = true;
+                }
             }
         });
     };
@@ -24,6 +29,9 @@ app.controller('AuthCtrl', function ($scope, $rootScope, $http, TokenStorage) {
 
             // For display purposes only
             $rootScope.token = JSON.parse(atob(TokenStorage.retrieve().split('.')[0]));
+            if ($rootScope.token.authority === "ROLE_ADMIN") {
+                $rootScope.admin = true;
+            }
 
         });
     };
@@ -32,5 +40,6 @@ app.controller('AuthCtrl', function ($scope, $rootScope, $http, TokenStorage) {
         // Just clear the local storage
         TokenStorage.clear();
         $rootScope.authenticated = false;
+        $rootScope.admin = false;
     };
 });
