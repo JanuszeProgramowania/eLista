@@ -92,6 +92,7 @@ public class UserServiceImpl implements IUserService {
         pUserOB.setEmail(aUserDTO.getEmail());
         pUserOB.setName(aUserDTO.getName());
         pUserOB.setLastName(aUserDTO.getLastName());
+        pUserOB.setAuthority(aUserDTO.getAuthority());
         return userConverter.mapOBtoDTO(iUserRepository.save(pUserOB));
     }
 

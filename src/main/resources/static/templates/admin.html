@@ -11,6 +11,11 @@
     <label for="newUserPassword">Password:</label>
     <input type="password" class="form-control" id="newUserPassword" placeholder="Wprowadź hasło"
            ng-model="newUser.password">
+    <label for="newUserAuthority">Authority:</label>
+    <select class="form-control" id="newUserAuthority" ng-model="newUser.authority">
+        <option>ROLE_USER</option>
+        <option>ROLE_ADMIN</option>
+    </select>
     <button class="btn btn-success" ng-click="saveNewUser()">Save</button>
 </div>
 
@@ -24,6 +29,11 @@
     <label for="selectedUserLastName">Last name:</label>
     <input type="text" class="form-control" id="selectedUserLastName" placeholder="Wprowadź nazwisko"
            ng-model="selectedUser.lastName">
+    <label for="selectedUserAuthority">Authority:</label>
+    <select class="form-control" id="selectedUserAuthority" ng-model="selectedUser.authority">
+        <option>ROLE_USER</option>
+        <option>ROLE_ADMIN</option>
+    </select>
     <button class="btn btn-success" ng-click="saveUser()">Save</button>
     <button class="btn btn-danger" ng-click="deleteUser()">Delete</button>
 </div>
@@ -34,6 +44,7 @@
             <th st-sort="email">Email</th>
             <th st-sort="name">Name</th>
             <th st-sort="lastName">Last Name</th>
+            <th st-sort="authority">Authority</th>
 
         </tr>
         </thead>
@@ -42,6 +53,7 @@
             <td>{{row.email}}</td>
             <td>{{row.name}}</td>
             <td>{{row.lastName}}</td>
+            <td>{{row.authority}}</td>
         </tr>
         </tbody>
     </table>

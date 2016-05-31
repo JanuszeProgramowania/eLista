@@ -6,7 +6,6 @@ app.controller('AdminController', ['$scope', '$rootScope', 'userFactory', '$loca
 
     $scope.saveNewUser = function () {
         $scope.newUser.id = 0;
-        $scope.newUser.authority = "ROLE_USER";
 
         userFactory.saveUser($scope.newUser, function (resp) {
             console.log(resp);
