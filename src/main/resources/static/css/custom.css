@@ -1,0 +1,162 @@
+.btn-menu {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #000;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 5px;
+    width: auto;
+    cursor: pointer;
+    margin-left:  -12px;
+    text-decoration: none;
+    position: fixed;
+    top:90%;
+    transform: rotate(90deg);
+}
+.btn-custom{
+    width:100%;
+    text-align: left;
+    padding-left: 0px;
+    opacity: 1;
+    background-color: black;
+    border: transparent;
+    height: 40px;
+    border-radius: 0px;
+    color:#999999;
+}
+.btn-custom:hover{
+    transition: 0.5s ease;
+    background: #333333;
+    color:whitesmoke;
+}
+#login{
+    text-align: center;
+    background: #333333;
+    color:whitesmoke;
+    transition: none;
+}
+#haslo, #email{
+    width:245px;
+    margin: 0 2px;
+}
+label{
+    color:whitesmoke;
+    margin-left:5px;
+}
+.ng-scope label{
+    color: black;
+}
+li>a:hover{
+    transition: 0.5s ease;
+    background-color: #333333;
+}
+.table-striped >thead{
+    background-color: silver;
+    border-bottom: 3px solid silver;
+
+}
+.table-striped >thead >tr >th{
+    transition: 0.5s ease;
+}
+
+.table-striped > thead > tr > th:hover{
+    transition: all 1s ease;
+    background-color: darkcyan;
+    color: white;
+    cursor: pointer;
+}
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: #77d5f7;
+    transition:0.5s ease;
+}
+.table-striped > tbody > tr:nth-child(even) > td, .table-striped > tbody > tr:nth-child(even) > th {
+    background-color: #b9def0;
+    transition:0.5s ease;
+}
+.table-striped > tbody > tr:hover > td{
+//transition: 0.7s ease;
+    transition: 0.7s ease-out;
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+
+
+.containerDragula:nth-child(2n+1) {
+    background-color: rgba(61, 255, 0, 0.5);
+}
+.containerDragula {
+    display: table-cell;
+    background-color: rgba(255, 81, 0, 0.5);
+    width: 50%;
+}
+
+.containerDragula div {
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+.containerDragula div, .gu-mirror {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: opacity 0.4s ease-in-out;
+}
+
+.cpLabel {
+    padding-left: 10px;
+}
+
+.horizontal-input {
+    width: 50%;
+}
+.spinner {
+    width: 100px;
+}
+.spinner input {
+    text-align: right;
+}
+.input-group-btn-vertical {
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    display: table-cell;
+}
+.input-group-btn-vertical > .btn {
+    display: block;
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    margin-left: -1px;
+    position: relative;
+    border-radius: 0;
+}
+.input-group-btn-vertical > .btn:first-child {
+    border-top-right-radius: 4px;
+}
+.input-group-btn-vertical > .btn:last-child {
+    margin-top: -2px;
+    border-bottom-right-radius: 4px;
+}
+.input-group-btn-vertical i{
+    position: absolute;
+    top: 0;
+    left: 4px;
+}
+
+.btn-menu:link{
+    text-decoration: none;
+}
+.btn-menu:visited{
+    color:#FFFFFF;
+}
+@media (max-width: 767px) {
+    .btn-menu{
+        display:none;
+    }
+
+}
